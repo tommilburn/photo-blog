@@ -1,5 +1,6 @@
 h1 hello world
 for picture in photos
-  ul
-    img(src='images/'+picture)
+  .picture
+    h1 #{picture.title}
+    img(src='images/'+picture.filename)
 

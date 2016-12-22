@@ -13,7 +13,10 @@ var Photo = mongoose.model('Photo', {filename: {type: String, unique: true}, tit
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
-	res.render("simple.pug", {photos: ["image00001.jpg", "00002.jpg", 3, 4, 5]});
+	var photos = Photo.find().sort('filename').exec(function(err, data){
+		console.log(data);
+	res.render("simple.pug", {photos: data});
+	});
 });
 
 app.get('/admin', function(req, res){
