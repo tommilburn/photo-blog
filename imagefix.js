@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var util = require('util');
 var sizeOf = require('image-size');
+var colorthief = require('color-thief');
 
 mongoose.connect('mongodb://localhost/photosite/');
 var Photo = mongoose.model('Photo', 

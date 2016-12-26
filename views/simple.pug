@@ -3,6 +3,6 @@ head
   meta(name="viewport" content="width=device-width, initial-scale=1")
 .content
   for picture in photos
-    .post
-      .imageContainer
-        img(src='images/'+picture.filename alt=picture.title)
+    .post.uh
+      div(class="imageContainer "+ picture.orientation) 
+        img(src='images/'+picture.filename alt=picture.title )

@@ -8,7 +8,12 @@ app.set('view engine', 'pug');
 app.use(express.static('static'));
 
 mongoose.connect('mongodb://localhost/photosite/');
-var Photo = mongoose.model('Photo', {filename: {type: String, unique: true}, title: String});
+var Photo = mongoose.model('Photo', 
+		{
+			filename: {type: String, unique: true}, 
+			title: String,
+			orientation: {type: String, enum: ['portrait', 'landscape']}
+		});
 
 app.use(bodyParser.urlencoded({extended: true}));
 
