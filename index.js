@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res){
 	var photos = Photo.find().sort('filename').exec(function(err, data){
-		console.log(data);
 	res.render("simple.pug", {photos: data});
 	});
 });
