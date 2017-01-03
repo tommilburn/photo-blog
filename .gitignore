@@ -38,7 +38,7 @@ jspm_packages
 <<<<<<< HEAD
 
 #Don't actually commit the photos
-/static
+/static/images
 
 #Keep environment variables a secret
 .env
