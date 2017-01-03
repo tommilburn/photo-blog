@@ -12,7 +12,8 @@ var Photo = mongoose.model('Photo',
 		{
 			filename: {type: String, unique: true}, 
 			title: String,
-			orientation: {type: String, enum: ['portrait', 'landscape']}
+			orientation: {type: String, enum: ['portrait', 'landscape']},
+			hexCode: {type: String}
 		});
 
 app.use(bodyParser.urlencoded({extended: true}));

@@ -4,5 +4,5 @@ head
 .content
   for picture in photos
     .post(class=picture.orientation)
-      div(class="imageContainer ") 
-        img(src='images/'+picture.filename alt=picture.title )
+      div(class="imageContainer") 
+        img(src='images/'+picture.filename alt=picture.title style="background-color:#"+picture.hexCode)
