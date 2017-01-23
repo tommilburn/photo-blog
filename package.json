@@ -1,11 +1,10 @@
 {
   "name": "photo-blog",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "simple node photo blog",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e pug,js index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,15 +16,5 @@
     "url": "https://github.com/tommilburn/photo-blog/issues"
   },
   "dependencies": {
-    "env2": "~2.1.1",
-    "image-size": "~0.5.1",
-    "color-thief": "~2.2.2",
-    "pug": "~2.0.0-beta6",
-    "express": "~4.14.0",
-    "nodemon": "~1.11.0",
-    "body-parser": "~1.15.2",
-    "get-image-colors": "~1.8.0",
-    "mongoose": "~4.7.6",
-    "client-sessions": "~0.7.0"
   }
 }

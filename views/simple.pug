@@ -1,9 +1,0 @@
-head
-  link(href="stylesheets/photos.css" rel="stylesheet")
-  meta(name="viewport" content="width=device-width, initial-scale=1")
-.content
-  for picture in photos
-    .post(class=picture.orientation)
-      div(class="imageContainer") 
-        a(href='images/'+picture.filename)
-          img(src='images/'+picture.filename title=picture.title style="background-color:#"+picture.hexCode)
