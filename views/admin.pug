@@ -1,6 +1,29 @@
-h1 hello admin
-form(method="GET" action="/admin/addAlbum/")
-  h3 add album
-  input(type="text" name="albumName")
-  button(type="submit") add album
+extends layout.pug
+
+mixin album(albumName)
+    tr
+      td #{albumName.title}
+      td 
+        a(href='admin/deleteAlbum?albumName=' + albumName.title) delete
+
+
+block content
+  .col-md-9
+    .row
+      h1 hello admin
+      if(notification)
+        p.bg-danger #{notification}
+      form(method="GET" action="/admin/addAlbum/")
+        h3 add album
+        input(type="text" placeholder="album name" name="albumName")
+        button(type="submit") add album
+      table.table.table-striped
+        thead
+          tr
+            th Album Name
+            th Delete
+        each a in albums
+          +album(a)
+
+      a.btn.btn-default(href="/logout" role="button") logout
 

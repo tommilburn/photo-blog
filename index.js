@@ -3,6 +3,7 @@ var express = require('express');
 var session = require('client-sessions');
 var bodyParser = require('body-parser');
 var Controller = require('./controller/controller.js');
+var querystring = require('querystring');
 
 var app = express();
 app.set('view engine', 'pug');
@@ -11,6 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 var controller = new Controller();
 controller.addAlbum('test');
 controller.addAlbum('uh');
+controller.addPhotoToAlbum('test', 'testPhoto1');
+controller.addPhotoToAlbum('test', 'testPhoto2');
 
 app.use(session({
 	cookieName: 'session',
@@ -35,7 +38,7 @@ app.use(function(req, res, next){
 });
 function requireLogin(req, res, next){
   if(!req.session.user){
-		res.redirect('/');
+		res.redirect('/login');
 	} else {
 		next();
 	}
@@ -56,11 +59,37 @@ app.get('/login', function(req, res){
 })
 app.get('/admin', requireLogin, renderAdminPage);
 function renderAdminPage(req, res){
-	res.render('admin.pug');
+	res.render('admin.pug', {
+		albums: controller.getAlbums(),
+		notification: req.query.notification
+	});
 };
 app.get('/logout', function(req, res){
 	req.session.reset();
 	res.redirect('/');
+});
+app.get('/admin/addAlbum', function(req, res){
+	if(req.query.albumName){
+		if(controller.addAlbum(req.query.albumName)){
+			var notification = encodeURIComponent('album ' + req.query.albumName + " added successfully");
+		} else {
+			var notification = encodeURIComponent('album ' + req.query.albumName + " already exists");
+		}
+	} else {
+		var notification = encodeURIComponent("album name improperly formatted");
+	}
+	res.redirect('/admin?notification=' + notification);
+})
+
+app.get('/admin/deleteAlbum', function(req, res){
+	if(req.query.albumName){
+		controller.deleteAlbum(req.query.albumName);
+		var notification = encodeURIComponent('album ' + req.query.albumName + " deleted successfully");
+		res.redirect('/admin?notification=' + notification);
+	}
+})
+app.get('/admin/album/:albumName/', function(req, res){
+  res.render('adminAlbum.pug', {album: controller.getAlbum(req.params.albumName)});
 });
 
 var port = process.env.PORT || 5000;

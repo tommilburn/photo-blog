@@ -1,0 +1,16 @@
+extends layout.pug
+
+
+
+block content
+  .col-md-9
+    .row
+      h1 #{album.title} 
+      if(notification)
+        p.bg-danger #{notification}
+      ul
+        for photo in album.photos
+          li photo.filename
+      
+      a.btn.btn-default(href="/logout" role="button") logout
+

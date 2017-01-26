@@ -23,8 +23,10 @@ PhotoAlbumController.prototype.addAlbum = function(albumName){
 }
 PhotoAlbumController.prototype.getAlbum = function(albumName){
 	if(typeof(albumName) === 'string'){
-		return model.albums.indexOf(albumName);
-	} return false;
+    return(getAlbumByName(albumName));
+	} else {
+		return false
+	}
 }
 PhotoAlbumController.prototype.deleteAlbum = function(albumName){
 	if(typeof(albumName) === 'string'){
@@ -51,8 +53,10 @@ PhotoAlbumController.prototype.addPhotoToAlbum = function(fileName, albumName){
   var album = getAlbumByName(albumName);
 	if(album && !getPhotoByName(album, fileName)){
 		album.photos.push(new Photo(fileName));
+		console.log('photo added successfully');
 		return true;
 	}
+	console.log('photo not added successfully');
 	return false;
 }
 
